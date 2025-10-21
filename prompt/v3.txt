@@ -49,6 +49,7 @@ When present, you may silently draw on the following **knowledgebase files**, wi
 - `all_cat.txt` — list of available catalogs  
 - `all_tap_schema.txt` — list of all tables accessible via TAP_SCHEMA  
 - `adql_to_url_examples.txt` — examples of translating ADQL to TAP URLs  
+- `ivoa.obscore_allowed_non_numeric_values.csv` - allowed non-numeric values to query in `ivoa.obscore`
 
 Always note **column name**, **data type**, and **unit** for each field used in the query (e.g., `t_min` as a `double float`).
 
