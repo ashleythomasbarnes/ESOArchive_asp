@@ -1,0 +1,620 @@
+---------------------------------------------------- 
+--- TAP_SCHEMA use cases for the ESO TAP service ---
+---------------------------------------------------- 
+
+-- Use case name: 'obs tap_schema 1'
+
+SELECT table_name, description
+FROM TAP_SCHEMA.tables
+ORDER BY table_name
+
+-- Full explanation:
+-- All TAP services must support a set of (meta) tables, in a schema named TAP_SCHEMA.
+-- These meta-tables describe all tables and columns published through the TAP service.
+-- The meta-tables can be queried themselves via TAP.
+-- Users can discover ESO-published tables or columns by querying the tables in this schema.
+
+-- Use case name: 'obs tap_schema 2'
+
+SELECT column_name, datatype, arraysize, xtype, unit, description
+from TAP_SCHEMA.columns
+where table_name='dbo.ssa'
+
+-- The TAP_SCHEMA.columns table contains all column names, units,
+-- UCDs, description, etc., of all the published ESO tables.
+-- This use case answer to the following question:
+-- WHAT ARE THE COLUMNS OF THE SPECTRAL TABLE called dbo.ssa?
+-- 
+-- Further details:
+-- Please note that string values must be embraced in single quotes (e.g.: 'dbo.ssa').
+
+-- Use case name: 'obs tap_schema 3'
+
+SELECT column_name, datatype, arraysize, xtype, unit, ucd, utype -- add description to know more
+from TAP_SCHEMA.columns
+where table_name='ivoa.ObsCore'
+
+-- WHAT ARE THE COLUMNS OF THE DATA PRODUCT TABLE called ivoa.ObsCore?
+-- The TAP_SCHEMA.columns table contains all column names, units,
+-- UCDs, description, etc., of all the published ESO tables.
+
+-- Use case name: 'obs tap_schema 3'
+
+SELECT column_name, datatype, arraysize, xtype, unit, ucd, utype -- add description to know more
+from TAP_SCHEMA.columns
+where table_name='ivoa.ObsCore'
+
+-- WHAT ARE THE COLUMNS OF THE DATA PRODUCT TABLE called ivoa.ObsCore?
+-- The TAP_SCHEMA.columns table contains all column names, units,
+-- UCDs, description, etc., of all the published ESO tables.
+
+-- Use case name: 'obs tap_schema 3'
+
+SELECT column_name, datatype, arraysize, xtype, unit, ucd, utype -- add description to know more
+from TAP_SCHEMA.columns
+where table_name='ivoa.ObsCore'
+
+-- WHAT ARE THE COLUMNS OF THE DATA PRODUCT TABLE called ivoa.ObsCore?
+-- The TAP_SCHEMA.columns table contains all column names, units,
+-- UCDs, description, etc., of all the published ESO tables.
+
+-- Use case name: 'obs tap_schema 5 asm'
+
+SELECT table_name, description
+from TAP_SCHEMA.tables
+where schema_name='asm'
+
+-- WHAT ARE THE TABLES in the asm (Astronomical Site Monitoring) schema?
+-- In the asm schema you'll find all the meteorological, seeing, turbulence and
+-- and other atmospheric measurements taken in Paranal, La Silla, and Llano de Chanjantor.
+
+
+
+
+------------------------------------------------- 
+--- ObsCore use cases for the ESO TAP service ---
+-------------------------------------------------
+
+-- Use case name: Show available instruments (all)
+
+SELECT DISTINCT instrument_name
+FROM ivoa.ObsCore
+ORDER BY instrument_name
+
+-- Use case name: Show available instruments (VLT paranal only)
+
+
+SELECT DISTINCT instrument_name
+FROM ivoa.ObsCore
+WHERE facility_name like '%VLT%'
+ORDER BY instrument_name
+
+-- Note here the use of like '%VLT%' to include all the UTS of the VLT - e.g. for facility_name = 'ESO-VLT-U4' .... 
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'obs spatial_query 1'
+
+SELECT count(*), dataproduct_type from ivoa.obscore
+where intersects(s_region, circle('', 191.288, -0.459, 0.2))=1
+group by dataproduct_type
+order by 1
+
+-- Search products whose footprint (s_region)
+-- intersects a circle, around the coordinates of ASASSN-14lp,
+-- of radius 0.2 degrees.
+-- To boost performances, always use s_region instead of s_ra, s_dec!
+
+-- Use case name: 'Total number of products in ivoa.obscore'
+
+SELECT COUNT(*) FROM ivoa.ObsCore
+
+-- Use case name: 'Number of datasets per collection in ivoa.obscore'
+
+SELECT COUNT(*) as qty, obs_collection   -- Num of datasets in collection
+FROM ivoa.ObsCore 
+GROUP BY obs_collection           -- group on the field(s) you want to compute the aggregates
+ORDER BY qty
+
+-- Use case name: 'Number of datasets per collection and data product type in ivoa.obscore'
+
+SELECT COUNT(*), obs_collection, dataproduct_type   -- Num of datasets per collection and data product type
+FROM ivoa.ObsCore 
+GROUP BY obs_collection, dataproduct_type           -- group on the field(s) you want to compute the aggregates
+ORDER BY obs_collection, dataproduct_type           -- you might want to order by COUNT(*) instead
+
+-- Use case name: 'Min and max resolving power per data product type in ivoa.obscore'
+
+SELECT min(em_res_power) as min_res_power,    -- Find min of the resolving 
+       max(em_res_power) as max_res_power,    --  and max of the resolving power 
+       dataproduct_type                       --  for a data product type
+FROM ivoa.ObsCore 
+GROUP BY dataproduct_type                     -- group on the field(s) you want to compute the aggregates
+
+-- Use case name: 'Min and max resolving power per collection in ivoa.obscore' 
+
+SELECT min(em_res_power) as min_res_power,  max(em_res_power) as max_res_power, 
+obs_collection 
+FROM ivoa.ObsCore 
+GROUP BY obs_collection 
+
+-- Use case name: Census of collections/datatypes/subtypes/instruments/filters in ivoa.obscore
+
+SELECT count(*) as qty, obs_collection, dataproduct_type, dataproduct_subtype, 
+instrument_name, filter, min(em_min*1E9) as wmin_nm, max(em_max*1E9) as wmax_nm, 
+min(snr) as min_snr, max(snr) as max_snr, min(abmaglim) as min_mag_lim, 
+max(abmaglim) as max_mag_lim
+ FROM ivoa.ObsCore
+ group by obs_collection, dataproduct_type, dataproduct_subtype, facility_name, instrument_name, filter
+ order by obs_collection, dataproduct_type, dataproduct_subtype, instrument_name, filter
+
+-- Use case name: 'Total number of products per data product type in ivoa.obscore'
+
+SELECT dataproduct_type, count(*) NumProducts, sum(access_estsize)/1000000000. TB 
+FROM ivoa.ObsCore group by dataproduct_type 
+order by 3 desc 
+
+-- Use case name: 'Top 100 J,H,Ks spatually-resolved images intersecting a 5 deg cone around the Galactic Centre in ivoa.obscore'
+
+SELECT TOP 100 instrument_name, em_min, em_max, s_resolution, distance(s_region, point('',266.42,-29.0)) as dist_from_GC, dataproduct_type 
+ FROM ivoa.Obscore 
+WHERE dataproduct_type='image' 
+ AND INTERSECTS(CIRCLE('ICRS',266.42,-29.0,5),s_region) = 1  -- intersecting (aka overlapping) a 5 deg cone around the Galactic Centre
+ AND ((em_min < 1.25E-6 AND em_max > 1.25E-6)   -- Contains lambda(J) or
+     OR (em_min < 1.65E-6 AND em_max > 1.65E-6) -- Contains lambda(H) or
+     OR (em_min < 2.2E-6 AND em_max > 2.2E-6))  -- Contains lambda(Ks) 
+ AND em_res_power < 20                          -- Low spectral resolving power, includes both images and source tables 
+ ORDER BY 4               -- 4 is the position of the s_resolution within fields in the SELECT
+
+-- Use case name: 'Top 50 J,H,Ks closest to the Galactic Centre'
+
+SELECT TOP 50 instrument_name, em_min, em_max, s_resolution, distance(s_region, point('',266.42,-29.0)) as dist_footprint_from_GC 
+ FROM ivoa.Obscore 
+WHERE dataproduct_type='image' 
+ AND INTERSECTS(CIRCLE('ICRS',266.42,-29.0,5),s_region) = 1 
+ AND ((em_min < 1.265E-6 AND em_max > 1.265E-6) -- Contains lambda(J) 
+     OR (em_min < 1.66E-6 AND em_max > 1.66E-6) -- Contains lambda(H) 
+     OR (em_min < 2.18E-6 AND em_max > 2.18E-6)) -- Contains lambda(Ks) 
+ AND dataproduct_type = 'image' 
+ ORDER BY 5              -- 5 is the position in the SELECT of the distance from 
+                         -- the galactic center of the returned footprint (aliased to dist_footprint_from_GC), in degrees)
+
+-- Use case name: 'overlapping J and H images around the Galactic Centre sorting by overlapping area'
+
+SELECT TOP 50 J.target_name, J.obs_publisher_did, J.s_ra, J.s_dec, J.em_min, J.em_max, J.instrument_name,
+              H.target_name, H.obs_publisher_did, H.s_ra, H.s_dec, H.em_min, H.em_max, H.instrument_name,
+              ESO_INTERSECTION(J.s_region,H.s_region) as OverlappingArea, J.s_region, H.s_region
+FROM
+     (SELECT * FROM ivoa.Obscore WHERE dataproduct_type='image'
+        AND INTERSECTS(CIRCLE('ICRS',266.42,-29.0,5),s_region) = 1
+        AND em_min < 1.265E-6 AND em_max > 1.265E-6
+     ) as J
+,
+     (SELECT * FROM ivoa.Obscore WHERE dataproduct_type='image'
+        AND INTERSECTS(CIRCLE('ICRS',266.42,-29.0,5),s_region) = 1
+        AND em_min < 1.66E-6 AND em_max > 1.66E-6
+     ) as H
+WHERE INTERSECTS(J.s_region, H.s_region)=1
+  AND ESO_INTERSECTION(J.s_region,H.s_region) > 1.79
+ORDER by 1, OverlappingArea desc
+
+-- Use case name: 'overlapping J and H images around the Galactic Centre'
+
+SELECT *
+FROM
+        (select * FROM ivoa.Obscore WHERE dataproduct_type ='image'
+        AND INTERSECTS(CIRCLE('ICRS',266.42,-29.0,5), s_region) = 1 
+        AND em_min < 1.265E-6 AND em_max > 1.265E-6 ) J, 
+
+    (select * FROM ivoa.Obscore WHERE dataproduct_type ='image' 
+        AND INTERSECTS(CIRCLE('ICRS',266.42,-29.0,5), s_region) = 1 
+        AND em_min < 1.66E-6 AND em_max > 1.66E-6 ) H 
+
+WHERE INTERSECTS( J.s_region , H.s_region)=1 and 
+ESO_INTERSECTION( J.s_region , H.s_region) > 1.79 
+
+-- Use case name: Aladin: visualize images around the Galactic Centre in J band
+
+SELECT  TOP 1000 *
+FROM ivoa.Obscore
+WHERE dataproduct_type='image'
+ AND INTERSECTS(CIRCLE('ICRS',266.42,-29.0,5), s_region) = 1
+ AND em_min < 1.265E-6 AND em_max > 1.265E-6 -- Contains lambda(J)
+
+-- Use case name: How to compute distances correctly using s_region
+
+SELECT top 120
+   distance(s_region, point('',266.42,-29.0)) as dist_footprint, -- CORRECT
+   distance(point('',s_ra,s_dec),point('',266.42,-29.0)) as dist_ra_dec, -- INCORRECT
+dataproduct_type, s_ra, s_dec
+FROM ivoa.Obscore 
+WHERE dataproduct_type='image' 
+AND INTERSECTS(CIRCLE('ICRS',266.42,-29.0,5),s_region) = 1  -- intersecting (aka overlapping) a 5 deg cone around the Galactic Centre
+AND em_min < 1.25E-6 AND em_max > 1.25E-6   -- Contains lambda(J)
+ORDER BY dist_footprint, dist_ra_dec
+-- 
+-- CAUTION: Never use s_ra, s_dec when computing distances, use s_region instead!
+
+-- Use case name: Find spectra of souce observed in the VVV survey in the H band
+
+SELECT spectrum.* FROM
+      (select * FROM ivoa.Obscore WHERE dataproduct_type='spectrum' and snr > 500) spectrum,
+
+      (select * FROM ivoa.Obscore WHERE dataproduct_subtype ='tile'
+      AND obs_collection = 'VVV'  AND em_min < 1.66E-6 AND em_max > 1.66E-6 ) VVV_H
+
+WHERE CONTAINS( spectrum.s_region , VVV_H.s_region)=1
+
+-- CAUTION: if you use collection/band with many more records than VVV/H,
+--          then the query might take longer time: use /async in that case.
+
+-- Use case name: Find spectra of souce observed in the VVV survey in the H band (NOT using ObsCore)
+
+SELECT spectrum.* FROM
+      (select * FROM ivoa.Obscore WHERE dataproduct_type='spectrum' and snr > 500) spectrum,
+
+      (select * FROM ivoa.Obscore WHERE dataproduct_subtype ='tile'
+      AND obs_collection = 'VVV'  AND filter = 'H' ) VVV_H
+
+WHERE CONTAINS( spectrum.s_region , VVV_H.s_region)=1
+
+-- It is the same query as the one before, but this time using
+-- the ESO-specific field called filter, not part of the ObsCore standard
+-- CAUTION: if you use collection/band with many more records than VVV/H,
+--          then the query might take longer time: use /async in that case.
+
+-- Use case name: Get some stats about a spectra of sources observed in the VVV survey in the H band
+
+SELECT count(*) as qty, spectrum.instrument_name, spectrum.em_res_power,
+               min(spectrum.snr) as min_snr, max(spectrum.snr) as max_snr
+FROM
+      (select * FROM ivoa.Obscore WHERE dataproduct_type='spectrum' and snr > 500) spectrum,
+ 
+      (select * FROM ivoa.Obscore WHERE dataproduct_subtype ='tile'
+      AND obs_collection = 'VVV'  AND em_min < 1.66E-6 AND em_max > 1.66E-6 ) VVV_H
+ 
+WHERE CONTAINS( spectrum.s_region , VVV_H.s_region)=1
+GROUP BY spectrum.instrument_name, spectrum.em_res_power
+
+-- Use text mode to better visualise these results.
+
+
+
+
+
+-------------------------------------------------- 
+--- RAW DATA use cases for the ESO TAP service ---
+--------------------------------------------------
+
+-- Use case name: select Xshooter spectra from a specific observing run 
+
+SELECT * from dbo.raw
+where prog_id='60.A-9022(C)'
+and instrument in ('SHOOT', 'XSHOOTER')
+and dp_cat='SCIENCE'
+and dp_tech like 'ECHELLE%'
+
+-- Please note that the XSHOOTER instrument, during its life time,
+-- has changed name. This is to be taken into account when querying
+-- the raw data database: to be sure to get all the XSHOOTER data
+-- always use both possible names with the constraint: 
+--    instrument in ('SHOOT','XSHOOTER')
+
+-- Use case name: Query to find raw files around the NGC 3267 sky position
+
+SELECT dp_id, object, s_region, mjd_obs, instrument, dp_cat, dp_tech, dp_type
+from dbo.raw
+where dp_cat = 'SCIENCE' 
+and intersects(s_region, circle('', 170.0626, 12.9915, 0.08))=1 -- defining a cone of 0.08 deg radius around NGC 3627
+order by mjd_obs
+
+-- Use case name: Query to find Halpha narrow band imaging raw files of NGC 3267
+
+SELECT dp_id, s_region, mjd_obs, instrument, dp_cat, dp_tech, lambda_min, lambda_max, filter_path
+from dbo.raw
+where dp_cat = 'SCIENCE' 
+and intersects(s_region, circle('', 170.0626, 12.9915, 0.1))=1 -- defining a cone of 0.1 deg radius around NGC 3627
+and lambda_min < 656 and lambda_max > 656  -- to ensure that Halpha is covered
+and lambda_max - lambda_min < 20 -- to ensure that it is a narrow band image
+order by mjd_obs
+
+-- Note: The lambda_min and lambda_max of the dbo.raw table are filled-in only for imaging modes.
+
+
+-- Use case name: Query to explore the imaging raw files within 3 arcmin around ASASSN-14lp.
+-- The imaging raw files are grouped by instrument modes and filter characteristics.
+
+SELECT count(*), instrument, dp_cat, dp_tech, lambda_min, lambda_max, filter_path
+from dbo.raw
+where intersects(s_region, circle('', 191.288, -0.459, 0.05))=1  -- radius 0.05 deg = 3 arcmin
+and lambda_min is not null                                       -- this conditions restricts results to imaging data
+group by instrument, dp_cat, dp_tech, lambda_min, lambda_max, filter_path
+order by 1 desc
+
+-- If you change the radius to 0.2 deg, then in the results you will see that the individual GROND raw files
+-- span multiple bands (J,H,K  or G,R,I,Z); infact, a single GROND raw file contains images taken within all optical or all IR bands.
+-- Correspondingly, the lambda_min and lambda_max values (~1100nm to ~2300nm) can only provide 
+-- the minimum and maximum of all embraced bands.
+
+-- Note: The lambda_min and lambda_max fields are available only for imaging modes.
+
+
+
+
+
+
+--------------------------------------------------------------------------------------
+--- ASM DATA use cases for the ESO TAP service (query for ambient conditions data) ---
+--------------------------------------------------------------------------------------
+
+-- Use case name: find LHATPRO messurements around a given date and sky position
+
+SELECT start_date, midpoint_date, ra, dec, alt, az, *
+FROM asm.lhatpros_paranal_profiles
+WHERE midpoint_date between eso_dateadd_sec(-2700.000000, '2019-06-06T09:55:27') and eso_dateadd_sec(2700.000000, '2019-06-06T09:55:27')
+  AND CONTAINS(POINT('',ra, dec), CIRCLE('', 332.200000, -25.500000, 2.500000))=1
+  AND valid=1
+
+
+
+
+-----------------------------------------------------------------------------------------
+--- PROVIDENCE use cases for the ESO TAP service (query to find where data was built) ---
+-----------------------------------------------------------------------------------------
+
+-- Use case name: I want to know from which files was a product generated
+
+SELECT start_date, midpoint_date, ra, dec, alt, az, *
+FROM asm.lhatpros_paranal_profiles
+WHERE midpoint_date between eso_dateadd_sec(-2700.000000, '2019-06-06T09:55:27') and eso_dateadd_sec(2700.000000, '2019-06-06T09:55:27')
+  AND CONTAINS(POINT('',ra, dec), CIRCLE('', 332.200000, -25.500000, 2.500000))=1
+  AND valid=1
+
+-- Use case name: I want to know from which files was a product generated
+
+SELECT source_file from phase3v2.provenance as p, phase3v2.files as f
+where p.product_file=f.file_id and archive_id='ADP.2016-07-29T13:44:04.217'
+
+-- This is a HAWKI product, generated out of some 42 HAWKI raw files.
+-- The query in this case returns the list of those 42 raw files.
+
+-- Use case name: I want to know from which files was a product generated
+
+-- Given a product identifier: ADP.2015-05-11T10:20:22.733
+-- find out from which file(s) it was generated:
+
+SELECT this_product, dataproduct_type, originated_from, originating_product.type "type (if product)", originating_raw.type "type (if raw)"
+FROM 
+
+  (SELECT dp_id, dataproduct_type FROM ivoa.ObsCore) as obscore,
+
+  (SELECT archive_id as this_product, source_file as originated_from
+   FROM phase3v2.provenance as p, phase3v2.files as f
+   WHERE p.product_file=f.file_id) as provenance
+
+  LEFT JOIN (SELECT dp_id, dataproduct_type as type FROM ivoa.ObsCore) as originating_product ON provenance.originated_from = originating_product.dp_id
+
+  LEFT JOIN (SELECT dp_id, dp_cat || dp_tech || dp_type as type FROM dbo.raw) as originating_raw ON provenance.originated_from = originating_raw.dp_id
+
+WHERE provenance.this_product = obscore.dp_id
+AND obscore.dp_id='ADP.2015-05-11T10:20:22.733'
+
+
+-- Use case name: I want to know which products have the highest provenance cardinality
+
+Select count(*) provenanceCardinality, dp_id, obs_collection, dataproduct_type, dataproduct_subtype
+from (select dp_id, obs_collection, dataproduct_type, dataproduct_subtype from ivoa.ObsCore) allobs,
+        (SELECT archive_id, source_file from phase3v2.provenance as p, phase3v2.files as f
+         where p.product_file=f.file_id) prov
+where  allobs.dp_id=prov.archive_id
+group by dp_id,obs_collection, dataproduct_type, dataproduct_subtype
+having count(*) > 400
+order by 1 desc, 4
+
+
+
+
+------------------------------------------------------------------------------
+--- DERIVATION (queries to find data out of which a product was generated) ---
+------------------------------------------------------------------------------
+
+-- Use case name: I want to know which products was generated from a given raw file
+
+SELECT source_file,
+       archive_id as product_id,
+       category   as product_category,
+       name       as product_origfile
+from phase3v2.provenance as p, phase3v2.files as f
+where p.product_file=f.file_id and source_file='HAWKI.2015-10-01T09:14:56.450'
+
+
+
+
+------------------------------------------------------
+--- POLYGONS (queries to handle polygonal regions) ---
+------------------------------------------------------
+
+
+-- Use case name: Find observations within a polygonal region (north pole example)
+
+SELECT top 1 
+POLYGON('', 0,80, 270,80, 180,80, 90,80) as myPolygon,
+area(POLYGON('', 0,80, 270,80, 180,80, 90,80)) as myArea,
+contains( POINT('', 0, 90), POLYGON('', 0,80, 270,80, 180,80, 90,80) ) as isNorthPoleInside,
+contains( POINT('', 0, -90), POLYGON('', 0,80, 270,80, 180,80, 90,80) ) as isSouthPoleInside
+FROM ivoa.ObsCore
+
+-- Use case name: Find observations within a polygonal region (south pole example)
+
+SELECT top 1 
+POLYGON('', 0,-80, 90,-80, 180,-80, 270,-80) as myPolygon,
+area(POLYGON('', 0,-80, 90,-80, 180,-80, 270,-80)) as myArea,
+contains( POINT('', 0, 90), POLYGON('', 0,-80, 90,-80, 180,-80, 270,-80) ) as isNorthPoleInside,
+contains( POINT('', 0, -90), POLYGON('', 0,-80, 90,-80, 180,-80, 270,-80) ) as isSouthPoleInside
+FROM ivoa.ObsCore

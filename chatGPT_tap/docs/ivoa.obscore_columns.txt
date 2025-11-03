@@ -1,0 +1,60 @@
+Table name: e1824e4a-582d-433d-8558-e3e89d5c34a1
++---------------------+----------+-----------+-------------+--------+-----------------------------+------------------------------------------------------------------------+
+| column_name         | datatype | arraysize | xtype       | unit   | ucd                         | utype                                                                  |
++---------------------+----------+-----------+-------------+--------+-----------------------------+------------------------------------------------------------------------+
+| abmaglim            | double   |           |             | mag    | phot.mag;stat.max           |                                                                        |
+| access_estsize      | long     |           |             | kbyte  | phys.size;meta.file         | obscore:Access.size                                                    |
+| access_format       | char     | 56*       |             |        | meta.code.mime              | obscore:Access.format                                                  |
+| access_url          | char     | 1024*     |             |        | meta.ref.url                | obscore:Access.reference                                               |
+| bib_reference       | char     | 128*      |             |        | meta.bib.bibcode            | obscore:Curation.reference                                             |
+| calib_level         | int      |           |             |        | meta.code;obs.calib         | obscore:ObsDataset.calibLevel                                          |
+| dataproduct_subtype | char     | 128*      |             |        | meta.code.class             | obscore:ObsDataset.dataProductSubtype                                  |
+| dataproduct_type    | char     | 12*       |             |        | meta.code.class             | obscore:ObsDataset.dataProductType                                     |
+| dp_id               | char     | 45*       |             |        | meta.id                     |                                                                        |
+| em_max              | double   |           |             | m      | em.wl;stat.max              | obscore:Char.SpectralAxis.Coverage.Bounds.Limits.HiLimit               |
+| em_min              | double   |           |             | m      | em.wl;stat.min              | obscore:Char.SpectralAxis.Coverage.Bounds.Limits.LoLimit               |
+| em_res_power        | double   |           |             |        | spect.resolution            | obscore:Char.SpectralAxis.Resolution.ResolPower.refVal                 |
+| em_xel              | long     |           |             |        | meta.number                 | obscore:Char.SpectralAxis.numBins                                      |
+| facility_name       | char     | 68*       |             |        | meta.id;instr.tel           | obscore:Provenance.ObsConfig.Facility.name                             |
+| filter              | char     | 255*      |             |        | meta.id;instr.filter        |                                                                        |
+| gal_lat             | double   |           |             | deg    | pos.galactic.lat            | galactic:Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C2 |
+| gal_lon             | double   |           |             | deg    | pos.galactic.lon            | galactic:Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C1 |
+| instrument_name     | char     | 68*       |             |        | meta.id;instr               | obscore:Provenance.ObsConfig.Instrument.name                           |
+| is_solar            | short    |           |             |        |                             |                                                                        |
+| last_mod_date       | char     | *         | timestamp   |        | time                        | ssa:Curation.Date                                                      |
+| multi_ob            | char     | 1         |             |        | meta.code.multip;obs        |                                                                        |
+| n_obs               | int      |           |             |        | meta.number;obs             |                                                                        |
+| o_calib_status      | char     | 15*       |             |        | meta.code.qual              | obscore:Char.ObservableAxis.calibrationStatus                          |
+| o_ucd               | char     | 68*       |             |        | meta.ucd                    | obscore:Char.ObservableAxis.ucd                                        |
+| obs_collection      | char     | 128*      |             |        | meta.id                     | obscore:DataID.collection                                              |
+| obs_creator_did     | char     | 92*       |             |        | meta.id                     | obscore:DataID.creatorDID                                              |
+| obs_creator_name    | char     | 256*      |             |        | meta.id                     | obscore:DataID.creator                                                 |
+| obs_id              | char     | 255*      |             |        | meta.id                     | obscore:DataID.observationID                                           |
+| obs_publisher_did   | char     | 128*      |             |        | meta.ref.ivoid              | obscore:Curation.publisherDID                                          |
+| obs_release_date    | char     | *         | timestamp   |        | time.release                | obscore:Curation.releaseDate                                           |
+| obs_title           | char     | 256*      |             |        | meta.title;obs              | obscore:DataID.title                                                   |
+| obstech             | char     | 30*       |             |        | instr.setup                 |                                                                        |
+| p3orig              | char     | 3*        |             |        | meta.ref                    |                                                                        |
+| pol_states          | char     | 32*       |             |        | meta.code;phys.polarization | obscore:Char.PolarizationAxis.stateList                                |
+| pol_xel             | long     |           |             |        | meta.number                 | obscore:Char.PolarizationAxis.numBins                                  |
+| preview_html        | char     | 259*      |             |        | meta.ref.url;meta.preview   |                                                                        |
+| proposal_id         | char     | 255*      |             |        | meta.id;obs.proposal        | obscore:Provenance.Proposal.identifier                                 |
+| publication_date    | char     | *         | timestamp   |        | time.publiYear              |                                                                        |
+| release_description | char     | *         |             |        | meta.ref.url                |                                                                        |
+| s_dec               | double   |           |             | deg    | pos.eq.dec                  | obscore:Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C2  |
+| s_fov               | double   |           |             | deg    | phys.angSize;instr.fov      | obscore:Char.SpatialAxis.Coverage.Bounds.Extent.diameter               |
+| s_pixel_scale       | double   |           |             | arcsec | phys.angSize;instr.pixel    | obscore:Char.SpatialAxis.Sampling.RefVal.SamplingPeriod                |
+| s_ra                | double   |           |             | deg    | pos.eq.ra                   | obscore:Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C1  |
+| s_region            | char     | *         | adql:REGION |        | pos.outline;obs.field       | obscore:Char.SpatialAxis.Coverage.Support.Area                         |
+| s_resolution        | double   |           |             | arcsec | pos.angResolution           | obscore:Char.SpatialAxis.Resolution.Refval.value                       |
+| s_xel1              | long     |           |             |        | meta.number                 | obscore:Char.SpatialAxis.numBins1                                      |
+| s_xel2              | long     |           |             |        | meta.number                 | obscore:Char.SpatialAxis.numBins2                                      |
+| snr                 | double   |           |             |        | stat.snr                    |                                                                        |
+| strehl              | double   |           |             |        | instr.param                 |                                                                        |
+| t_exptime           | double   |           |             | s      | time.duration;obs.exposure  | obscore:Char.TimeAxis.Coverage.Support.Extent                          |
+| t_max               | double   |           |             | d      | time.end;obs.exposure       | obscore:Char.TimeAxis.Coverage.Bounds.Limits.StopTime                  |
+| t_min               | double   |           |             | d      | time.start;obs.exposure     | obscore:Char.TimeAxis.Coverage.Bounds.Limits.StartTime                 |
+| t_resolution        | double   |           |             | s      | time.resolution             | obscore:Char.TimeAxis.Resolution.Refval.value                          |
+| t_xel               | long     |           |             |        | meta.number                 | obscore:Char.TimeAxis.numBins                                          |
+| target_name         | char     | 256*      |             |        | meta.id;src                 | obscore:Target.name                                                    |
++---------------------+----------+-----------+-------------+--------+-----------------------------+------------------------------------------------------------------------+

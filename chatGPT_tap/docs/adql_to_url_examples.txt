@@ -1,0 +1,63 @@
+Translate ADQL to URLs for tap_obs and tap_cat:
+
+- tap_obs examples
+
+Example ADQL (simple): 
+
+SELECT DISTINCT instrument_name
+FROM ivoa.ObsCore
+WHERE facility_name LIKE '%VLT%'
+ORDER BY instrument_name
+
+Translates to:  
+
+https://archive.eso.org/tap_obs/sync?REQUEST=doQuery&FORMAT=txt&LANG=ADQL&MAXREC=200&QUERY=SELECT+DISTINCT+instrument_name%0D%0AFROM+ivoa.ObsCore%0D%0AWHERE+facility_name+LIKE+%27%25VLT%25%27%0D%0AORDER+BY+instrument_name%0D%0A
+
+--
+
+Example ADQL (Find UVES 1d spectra for objects also observed by MUSE): 
+
+SELECT DISTINCT uves.obs_id, uves.target_name, uves.s_ra, uves.s_dec, uves.access_url
+FROM ivoa.ObsCore AS uves
+JOIN ivoa.ObsCore AS muse
+  ON 1 = INTERSECTS(uves.s_region, muse.s_region)
+WHERE uves.instrument_name LIKE '%UVES%'
+  AND uves.dataproduct_type = 'spectrum'
+  AND uves.calib_level >= 1
+  AND muse.instrument_name LIKE '%MUSE%'
+  AND muse.dataproduct_type = 'cube'
+
+Translates to:  
+
+https://archive.eso.org/tap_obs/sync?REQUEST=doQuery&LANG=ADQL&MAXREC=200&FORMAT=txt&QUERY=SELECT%20DISTINCT%20uves.obs_id,%20uves.target_name,%20uves.s_ra,%20uves.s_dec,%20uves.access_url%0aFROM%20ivoa.ObsCore%20AS%20uves%0aJOIN%20ivoa.ObsCore%20AS%20muse%0aON%201%20=%20INTERSECTS%28uves.s_region,%20muse.s_region%29%0aWHERE%20uves.instrument_name%20LIKE%20%27%25UVES%25%27%0aAND%20uves.dataproduct_type%20=%20%27spectrum%27%0aAND%20uves.calib_level%20%3e=%201%0aAND%20muse.instrument_name%20LIKE%20%27%25MUSE%25%27%0aAND%20muse.dataproduct_type%20=%20%27cube%27
+
+- tap_cat examples
+
+Example ADQL (this query returns the most recent version of any catalog): 
+
+SELECT schema_name, collection, table_name, title, version
+FROM TAP_SCHEMA.tables
+WHERE cat_id in 
+             (select t1.cat_id cat_id 
+              from TAP_SCHEMA.tables t1
+              left outer join TAP_SCHEMA.tables t2 on (t1.title = t2.title and t1.version< t2.version) 
+              where t2.title is null)
+ORDER BY schema_name, collection, title
+
+Translates to:  
+
+https://archive.eso.org/tap_cat/sync?REQUEST=doQuery&LANG=ADQL&MAXREC=200&FORMAT=text&QUERY=SELECT%20schema_name,%20collection,%20table_name,%20title,%20version%0aFROM%20TAP_SCHEMA.tables%0aWHERE%20cat_id%20in%0a%28select%20t1.cat_id%20cat_id%0afrom%20TAP_SCHEMA.tables%20t1%0aleft%20outer%20join%20TAP_SCHEMA.tables%20t2%20on%20%28t1.title%20=%20t2.title%20and%20t1.version%3c%20t2.version%29%0awhere%20t2.title%20is%20null%29%0aORDER%20BY%20schema_name,%20collection,%20title
+
+--
+
+Example ADQL (for checking specific catalog): 
+
+SELECT column_name, datatype, unit, ucd -- add description to know more
+from TAP_SCHEMA.columns
+where table_name='COSMOS2015_Laigle_v1_1b_latestV7_fits_V1'
+
+Translates to:  
+
+https://archive.eso.org/tap_cat/sync?REQUEST=doQuery&LANG=ADQL&MAXREC=200&FORMAT=text&QUERY=SELECT%20column_name,%20datatype,%20unit,%20ucd%0afrom%20TAP_SCHEMA.columns%0awhere%20table_name=%27COSMOS2015_Laigle_v1_1b_latestV7_fits_V1%27
+
+--
